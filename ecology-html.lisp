@@ -5,28 +5,43 @@
 (defparameter *ecology-dispatch-table* nil
   "Таблица диспетчеризации проекта adiabatic-temperature")
 
+(defun allowed-address-p()
+  (member (real-remote-addr)  (allowed-address-list) :test #'equal))
+
+(defun allowed-address-list()
+  (apply #'append 
+	 (mapcar #'(lambda (el) (ip-by-name el)) 
+		 (append 
+		  *dep11-comps*
+		  *dep-oakts-comps*
+		  ))))
+
 (defun ecology-stop()
   "Выполняет очистку таблицы диспетчеризации"
   (clean-dispatch-table '*ecology-dispatch-table*)) 
 
 (defmacro standard-page ((&key title)  &body body)
-  `(with-html-output-to-string (*standard-output* nil :prologue t :indent t)
-     (:html
-      (:head
-       (:meta :chatset "utf-8")
-       (:title ,title)
-       (:link :type "text/css" :rel "stylesheet" :href "/retro.css"))
-      (:body
-       (:header
-        (:h3 "Пересчет CO и ΝΟx, выраженных в ppm в мг/м3, и приведение к определенному количеству кислорода")
-	(:hr))
-       (:main ,@body)
-       (:footer
-	(:hr)
-	(:table
-	 (:tr (:td (:h3 "Combustion-Chamber-Tools"))
-	      (:td (:img :src "/img/made-with-lisp-logo.jpg" :width "150" :height"50"))))
-	(:hr))))))
+  `(if (allowed-address-p)
+       (with-html-output-to-string (*standard-output* nil :prologue t :indent t)
+	 (:html
+	  (:head
+	   (:meta :chatset "utf-8")
+	   (:title ,title)
+	   (:link :type "text/css" :rel "stylesheet" :href "/retro.css"))
+	  (:body
+	   (:header
+	    (:h3 "Пересчет CO и ΝΟx, выраженных в ppm в мг/м3, и приведение к определенному количеству кислорода")
+	    (:hr))
+	   (:main ,@body)
+	   (:footer
+	    (:hr)
+	    (:table
+	     (:tr (:td (:h3 "Combustion-Chamber-Tools"))
+		  (:td (:img :src "/img/made-with-lisp-logo.jpg" :width "150" :height"50"))))
+	    (:hr)))))
+       (with-html-output-to-string (*standard-output* nil :prologue t :indent t)
+	 (:html
+	  (:h1 "404 - Not allowed.")))))
 
 (defun ecology-start()
   (mnas-site-start)
@@ -90,3 +105,4 @@
 ;;;; *adiabatic-temperature-dispatch-table*
 
 ;;;; *dispatch-table*
+

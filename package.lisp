@@ -1,7 +1,7 @@
 ;;;; package.lisp
 
 (defpackage #:ecology
-  (:use #:cl #:mnas-string #:mnas-site #:hunchentoot #:cl-who)
+  (:use #:cl #:hunchentoot #:cl-who #:cl-ppcre #:mnas-string #:mnas-site #:mnas-dns #:dep11)
   (:export CO-ppm->mg/m3
 	   NOx-ppm->mg/m3)) 
 
