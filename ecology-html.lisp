@@ -9,29 +9,12 @@
   "Выполняет очистку таблицы диспетчеризации"
   (clean-dispatch-table '*ecology-dispatch-table*)) 
 
-(defmacro standard-page ((&key title)  &body body)
-  `(if (allowed-address-p)
-       (with-html-output-to-string (*standard-output* nil :prologue t :indent t)
-	 (:html
-	  (:head (:meta :chatset "utf-8") (:title ,title))
-	  (:body
-	   (:header
-	    (:h3 "Пересчет CO и ΝΟx, выраженных в ppm в мг/м3, и приведение к определенному количеству кислорода")
-	    (:hr))
-	   (:main ,@body)
-	   (:footer
-	    (:hr)
-	    (:table
-	     (:tr (:td (:h3 "Combustion-Chamber-Tools"))
-		  (:td (:img :src "/img/made-with-lisp-logo.jpg" :width "150" :height"50"))))
-	    (:hr)))))
-       (with-html-output-to-string (*standard-output* nil :prologue t :indent t) (:html (:h1 "404 - Not allowed.")))))
 
 (defun ecology-start()
   (mnas-site-start)
   (define-url-fn (ecology/select *ecology-dispatch-table*)
-    (standard-page
-	(:title "Combustion-Chamber-Tools-select")
+    (standard-page ("Combustion-Chamber-Tools-select" :header (mnas-site-template:header) :footer (mnas-site-template:footer))
+      (:h3 "Пересчет CO и ΝΟx, выраженных в ppm в мг/м3, и приведение к определенному количеству кислорода")
       (:form :action "show" :method "post"
 	     (:table :border "2" :cols "4" :style "width:30em"
 		     (:caption (:h3 "Таблица 1 - Состав пробы газа"))
@@ -48,8 +31,7 @@
 	   (NO2-ppm  (read-from-string-number (parameter "NO2-ppm") 0))
 	   (O2-%     (read-from-string-number (parameter "O2-%"   ) 18))
 	   (O2-pr-%  (read-from-string-number (parameter "O2-pr-%") 15)))
-      (standard-page
-	  (:title "Combustion-Chamber-Tools-show")
+      (standard-page ("Combustion-Chamber-Tools-show" :header (mnas-site-template:header) :footer (mnas-site-template:footer))
 	(:form :action "show" :method "post"
 	       (:table :border "2" :cols "4" :style "width:30em"
 		       (:caption (:h3 "Таблица 1 - Состав пробы газа"))
