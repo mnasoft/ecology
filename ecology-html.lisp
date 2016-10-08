@@ -5,17 +5,6 @@
 (defparameter *ecology-dispatch-table* nil
   "Таблица диспетчеризации проекта adiabatic-temperature")
 
-(defun allowed-address-p()
-  (member (real-remote-addr)  (allowed-address-list) :test #'equal))
-
-(defun allowed-address-list()
-  (apply #'append 
-	 (mapcar #'(lambda (el) (ip-by-name el)) 
-		 (append 
-		  *dep11-comps*
-		  *dep-oakts-comps*
-		  ))))
-
 (defun ecology-stop()
   "Выполняет очистку таблицы диспетчеризации"
   (clean-dispatch-table '*ecology-dispatch-table*)) 
