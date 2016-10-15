@@ -3,6 +3,8 @@
 *.fasl
 *.lisp-temp
 *~
+\#*#
+
 *.pdf
 *.png
 *.gv
