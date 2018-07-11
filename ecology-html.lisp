@@ -60,6 +60,16 @@
       ((numberp val) val)
       (t default))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-easy-handler (uri-/ecology :uri "/ecology")                 ()  (redirect "/ecology/select"))
+
+(define-easy-handler (uri-/ecology/ :uri "/ecology/")               ()  (redirect "/ecology/select"))
+
+(define-easy-handler (uri-/ecology/select/ :uri "/ecology/select/") ()  (redirect "/ecology/select"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;;; (progn (ecology-stop) (ecology-start))
 
 ;;;; (mnas-site-start)
