@@ -26,11 +26,11 @@
 		     (:tr (:td "O2-pr" ) (:td "Кислород")           (:td (:input :type "text" :name "O2-pr-%"  :class "txt" :value "15") (:td "% об"))))
 	     (:p (:input :type "submit" :value "Рассчитать" :class "btn")))))
   (define-url-fn (ecology/show *ecology-dispatch-table*)
-    (let* ((CO-ppm   (read-from-string-number (parameter "CO-ppm" ) 0))
-	   (NO-ppm   (read-from-string-number (parameter "NO-ppm" ) 0))
-	   (NO2-ppm  (read-from-string-number (parameter "NO2-ppm") 0))
-	   (O2-%     (read-from-string-number (parameter "O2-%"   ) 18))
-	   (O2-pr-%  (read-from-string-number (parameter "O2-pr-%") 15)))
+    (let* ((CO-ppm   (read-number-from-string (parameter "CO-ppm" ) 0))
+	   (NO-ppm   (read-number-from-string (parameter "NO-ppm" ) 0))
+	   (NO2-ppm  (read-number-from-string (parameter "NO2-ppm") 0))
+	   (O2-%     (read-number-from-string (parameter "O2-%"   ) 18))
+	   (O2-pr-%  (read-number-from-string (parameter "O2-pr-%") 15)))
       (standard-page ("Combustion-Chamber-Tools-show" :header (mnas-site-template:header) :footer (mnas-site-template:footer))
 	(:form :action "show" :method "post"
 	       (:table :border "2" :cols "4" :style "width:30em"
@@ -54,11 +54,6 @@
 		 (:td (str (write-to-string (NOx-ppm->mg/m3 (+ NO-ppm NO2-ppm) O2-% O2-pr-%)))))))))
   )
 
-(defun read-from-string-number (str &optional (default 0.0))
-  (let ((val (read-from-string str)))
-    (cond
-      ((numberp val) val)
-      (t default))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
