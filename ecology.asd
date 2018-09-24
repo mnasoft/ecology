@@ -1,9 +1,9 @@
 ;;;; ecology.asd
 
-(asdf:defsystem #:ecology
+(defsystem #:ecology
   :description "Describe ecology here"
-  :author "Your Name <your.name@example.com>"
-  :license "Specify license here"
+  :author "Nick Matvyeyev <mnasoft@gmail.com>"
+  :license "GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 or later"  
   :serial t
   :depends-on (#:hunchentoot #:cl-who #:mnas-string #:mnas-site #:mnas-dns #:mnas-site-route #:mnas-site-template)
   :components ((:file "package")
