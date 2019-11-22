@@ -3,7 +3,9 @@
 (defpackage #:ecology)
 
 (defpackage #:ecology
-  (:use #:cl #:hunchentoot #:cl-who #:cl-ppcre #:mnas-string #:mnas-site #:mnas-dns #:mnas-site-route #:mnas-site-template)
+  (:use #:cl #:hunchentoot #:cl-who
+;;;;	#:cl-ppcre
+	#:mnas-string #:mnas-site #:mnas-dns #:mnas-site-route #:mnas-site-template)
   (:export ecology::CO-ppm->mg/m3
 	   ecology::NOx-ppm->mg/m3)
   (:export ecology::ecology-stop ecology-start)) 
