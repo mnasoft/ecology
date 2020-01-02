@@ -2,16 +2,20 @@
 
 (in-package #:ecology)
 
+(annot:enable-annot-syntax)
+
 (defparameter *ecology-dispatch-table* nil
   "Таблица диспетчеризации проекта adiabatic-temperature")
 
+@export
+@annot.doc:doc
+"Выполняет очистку таблицы диспетчеризации"
 (defun ecology-stop()
-  "Выполняет очистку таблицы диспетчеризации"
   (clean-dispatch-table '*ecology-dispatch-table*)) 
 
-
+@export
 (defun ecology-start()
-  (mnas-site-start)
+  (mnas-site:mnas-site-start)
   (define-url-fn (ecology/select *ecology-dispatch-table*)
     (standard-page ("Combustion-Chamber-Tools-select" :header (mnas-site-template:header) :footer (mnas-site-template:footer))
       (:h3 "Пересчет CO и ΝΟx, выраженных в ppm в мг/м3, и приведение к определенному количеству кислорода")
@@ -65,11 +69,13 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;; "http://localhost:8000/ecology/select"
+
 ;;;; (progn (ecology-stop) (ecology-start))
 
-;;;; (mnas-site-start)
+;;;; (mnas-site:mnas-site-start)
 
-;;;; (mnas-site-stop)
+;;;; (mnas-site:mnas-site-stop)
 
 ;;;; *adiabatic-temperature-dispatch-table*
 

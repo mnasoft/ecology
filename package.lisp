@@ -1,14 +1,14 @@
 ;;;; package.lisp
 
-(defpackage #:ecology)
-
 (defpackage #:ecology
-  (:use #:cl #:hunchentoot #:cl-who
+  (:use #:cl 
 ;;;;	#:cl-ppcre
-	#:mnas-string #:mnas-site #:mnas-dns #:mnas-site-route #:mnas-site-template)
-  (:export ecology::CO-ppm->mg/m3
-	   ecology::NOx-ppm->mg/m3)
-  (:export ecology::ecology-stop ecology-start)) 
+	#:hunchentoot
+	#:cl-who
+	#:mnas-string
+	#:mnas-site
+	#:mnas-dns #:mnas-site-route #:mnas-site-template
+	)) 
 
 ;;;;(declaim (optimize (space 0) (compilation-speed 0)  (speed 0) (safety 3) (debug 3)))
 
