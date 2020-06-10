@@ -1,9 +1,11 @@
 .directory
+*~
 *.FASL
 *.fasl
 *.lisp-temp
-*~
+build
 \#*#
+
 
 *.pdf
 *.png
