@@ -2,18 +2,15 @@
 
 (in-package #:ecology)
 
-(annot:enable-annot-syntax)
-
 (defparameter *ecology-dispatch-table* nil
   "Таблица диспетчеризации проекта adiabatic-temperature")
 
-@export
-@annot.doc:doc
-"Выполняет очистку таблицы диспетчеризации"
+(export 'ecology-stop)
 (defun ecology-stop()
-  (clean-dispatch-table '*ecology-dispatch-table*)) 
+"Выполняет очистку таблицы диспетчеризации"
+  (clean-dispatch-table '*ecology-dispatch-table*))
 
-@export
+(export 'ecology-start)
 (defun ecology-start()
   (mnas-site:mnas-site-start)
   (define-url-fn (ecology/select *ecology-dispatch-table*)
