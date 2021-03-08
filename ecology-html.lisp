@@ -27,11 +27,11 @@
 		     (:tr (:td "O2-pr" ) (:td "Кислород")           (:td (:input :type "text" :name "O2-pr-%"  :class "txt" :value "15") (:td "% об"))))
 	     (:p (:input :type "submit" :value "Рассчитать" :class "btn")))))
   (define-url-fn (ecology/show *ecology-dispatch-table*)
-    (let* ((CO-ppm   (read-number-from-string (parameter "CO-ppm" ) 0))
-	   (NO-ppm   (read-number-from-string (parameter "NO-ppm" ) 0))
-	   (NO2-ppm  (read-number-from-string (parameter "NO2-ppm") 0))
-	   (O2-%     (read-number-from-string (parameter "O2-%"   ) 18))
-	   (O2-pr-%  (read-number-from-string (parameter "O2-pr-%") 15)))
+    (let* ((CO-ppm   (mnas-string/parse:parse-number (parameter "CO-ppm" ) 0))
+	   (NO-ppm   (mnas-string/parse:parse-number (parameter "NO-ppm" ) 0))
+	   (NO2-ppm  (mnas-string/parse:parse-number (parameter "NO2-ppm") 0))
+	   (O2-%     (mnas-string/parse:parse-number (parameter "O2-%"   ) 18))
+	   (O2-pr-%  (mnas-string/parse:parse-number (parameter "O2-pr-%") 15)))
       (standard-page ("Combustion-Chamber-Tools-show" :header (mnas-site-template:header) :footer (mnas-site-template:footer))
 	(:form :action "show" :method "post"
 	       (:table :border "2" :cols "4" :style "width:30em"
