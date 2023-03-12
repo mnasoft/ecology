@@ -1,6 +1,6 @@
 ;;;; package.lisp
 
-(defpackage #:ecology
+(defpackage :ecology
   (:use #:cl 
 ;;;;	#:cl-ppcre
 	#:hunchentoot

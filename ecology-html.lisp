@@ -1,6 +1,6 @@
 ;;;; ecology-html.lisp
 
-(in-package #:ecology)
+(in-package :ecology)
 
 (defparameter *ecology-dispatch-table* nil
   "Таблица диспетчеризации проекта adiabatic-temperature")

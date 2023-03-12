@@ -1,6 +1,6 @@
 ;;;; ecology.lisp
 
-(in-package #:ecology)
+(in-package :ecology)
 
 (export '*O2-atm*)
 
